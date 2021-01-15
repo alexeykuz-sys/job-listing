@@ -1,0 +1,96 @@
+
+$font-weights: (
+    'regular':400,
+    'medium':500,
+    'bold':700
+    );
+    
+    
+    @function weight($weight-name){
+        @return map-get($font-weights, $weight-name);
+    }
+    
+    @function set-text-color($bg-color){
+      @if (lightness($bg-color) > 70) {
+        @return $BrightRed;
+      } @else {
+        @return $VaryLightGray;
+      }
+    }
+    
+    @mixin set-bg-color($bg-color) {
+      background-color: $bg-color;
+      color:set-text-color($bg-color);  
+    }
+    
+    
+    
+    %header {
+        text-align: center;
+        line-height: 3.1rem;
+        font-weight: 700;
+        font-size: 35px;
+    }
+    
+    %text {
+        line-height: 1.5rem;
+        font-weight: 400;
+        font-size: 16px;
+        
+        
+    }
+    
+    
+    @mixin flexCenter($direction) {
+        display: flex;
+        align-items: center;
+        flex-direction: $direction;    
+    }
+    
+    @mixin element-align($align,$margin) {
+        align-items: $align;
+        margin: $margin;
+    }
+    
+    @mixin  element-float($float, $margin) {
+        float:$float;
+        margin-left: $margin;    
+    }
+    
+    @mixin circle($i){
+      border-radius: 100%;
+      height: $i;
+      width: $i;
+    }
+    
+    @mixin centerElement($top, $left){
+      top: $top;
+      left: $left;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+      position: absolute;
+    }
+    
+    // Media Queries
+    
+    $tablet: 768;
+    $large: 1024;
+    $desktop: 1280;
+    
+    @mixin tablet {
+      @media (min-width: $tablet * 1px) {
+        @content;
+      }
+    }
+    
+    @mixin large {
+      @media (min-width: $large * 1px) {
+        @content;
+      }
+    }
+    
+    @mixin desktop {
+      @media (min-width: $desktop * 1px) {
+        @content;
+      }
+    }
