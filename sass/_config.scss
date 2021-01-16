@@ -23,21 +23,11 @@ $font-weights: (
       color:set-text-color($bg-color);  
     }
     
-    
-    
-    %header {
-        text-align: center;
-        line-height: 3.1rem;
-        font-weight: 700;
-        font-size: 35px;
-    }
-    
-    %text {
-        line-height: 1.5rem;
-        font-weight: 400;
-        font-size: 16px;
-        
-        
+    @mixin brandName ($fontColor, $fontSize){
+      color:$fontColor;
+      font-size: $fontSize;
+      font-weight:  weight(bold);
+      
     }
     
     

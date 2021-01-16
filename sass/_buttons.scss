@@ -1,0 +1,21 @@
+@mixin button1($background,$fontcolor) {
+    background-color: $background;
+    padding:3px 10px;
+    border-radius: 20px;
+    color: $fontcolor;
+    text-align: center;
+    text-transform: uppercase;
+    margin-left: 15px;
+    font-weight: weight(bold);
+}
+
+@mixin  button2($background,$fontcolor)  {
+    background-color: $background;
+    padding:3px 10px;
+    border-radius: 20px;
+    color: $fontcolor;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: weight(bold);
+    
+}
