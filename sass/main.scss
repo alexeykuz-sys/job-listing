@@ -22,7 +22,7 @@
     @include centerElement(30%, 50%);
     background-color:$lightGrayishCyanBackground;
     height: 200px;
-    width: 350px;
+    // width: 350px;
     
     @include flexCenter(column)
 }
@@ -35,6 +35,8 @@
     border-left: 5px solid $desaturatedDarkCyan;
     border-radius: 10px;
     padding: 20px;
+    flex-wrap: nowrap;
+    
 
     .logo{
         margin-top: -59px;
@@ -83,6 +85,13 @@
         }
 
     }
+    @include large {
+            @include flexCenter(row);
+        }
+        .card-bottom {
+            margin-left: 50px;
+        }
+    
 }
 .attribution { 
     font-size: 11px; text-align: center;

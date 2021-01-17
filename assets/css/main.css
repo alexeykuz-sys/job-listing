@@ -42,7 +42,6 @@ body {
   position: absolute;
   background-color: #effafa;
   height: 200px;
-  width: 350px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -58,6 +57,7 @@ body {
   border-left: 5px solid #5ba4a4;
   border-radius: 10px;
   padding: 20px;
+  flex-wrap: nowrap;
 }
 
 .card .logo {
@@ -136,6 +136,18 @@ body {
   font-size: 10.5px;
   align-items: start;
   margin-top: 10px;
+}
+
+@media (min-width: 1024px) {
+  .card {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+  }
+}
+
+.card .card-bottom {
+  margin-left: 50px;
 }
 
 .attribution {
