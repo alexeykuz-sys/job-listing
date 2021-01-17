@@ -19,24 +19,29 @@
 }
 
 .container{
-    @include centerElement(30%, 50%);
-    background-color:$lightGrayishCyanBackground;
-    height: 200px;
-    // width: 350px;
-    
-    @include flexCenter(column)
+    margin: 25px;
+    @include blockCenter(column);
+
 }
 
 .card{
-    width:100%;
-    height: 100%;
-    @include flexCenter(column);
-    background-color: white;
-    border-left: 5px solid $desaturatedDarkCyan;
-    border-radius: 10px;
-    padding: 20px;
-    flex-wrap: nowrap;
     
+    @include flexStart(column);
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    flex-wrap: nowrap;
+    margin-top: 50px;
+    box-shadow: 2px 2px 13px 0px $desaturatedDarkCyan;
+    
+    &.new {
+        border-left: 5px solid $desaturatedDarkCyan;
+
+    }
+    
+    .card-top{
+        margin-left: 13px;
+    }
 
     .logo{
         margin-top: -59px;
@@ -49,7 +54,7 @@
         
 
         & p {
-            @include brandName($desaturatedDarkCyan, $fontSize);
+            @include textSet($desaturatedDarkCyan, $fontSize);
         
         }
         .new {
@@ -62,7 +67,7 @@
         }
     }
     .job-title{
-        @include brandName($veryDarkGrayishCyan, $fontSize);
+        @include textSet($veryDarkGrayishCyan, $fontSize);
         letter-spacing: .3px;
     }
     .details-wrapper{
@@ -73,12 +78,17 @@
         font-size: $fontSize*0.9;
         justify-content: space-between;
     }
+    .dot:before{
+        content: '\00B7';
+        padding-right:5px;
+    }
+
     .roles{
         @include flexCenter(row);
         justify-content: start;
         flex-wrap: wrap;
         margin-bottom: 30px;
-        margin-left: 20px;
+
         .button{
             @include button2($lightGrayishCyanBackground, $desaturatedDarkCyan);
             flex-wrap: wrap;
@@ -93,6 +103,7 @@
     @include tablet {    
         @include flexCenter(row);
         flex-wrap: nowrap;
+        justify-content: space-between;
             .logo {
                 margin:0;
                 @include flexCenter(row);

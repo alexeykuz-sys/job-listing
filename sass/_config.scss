@@ -6,81 +6,101 @@ $font-weights: (
     );
     
     
-    @function weight($weight-name){
-        @return map-get($font-weights, $weight-name);
+  @function weight($weight-name){
+      @return map-get($font-weights, $weight-name);
+  }
+
+  // sets text font color and font weight
+  @mixin textSet ($fontColor, $fontSize){
+    color:$fontColor;
+    font-size: $fontSize;
+    font-weight:  weight(bold);
+    
+  }
+  
+  // sets text color depending on bg color
+  @function set-text-color($bg-color){
+    @if (lightness($bg-color) > 70) {
+      @return $BrightRed;
+    } @else {
+      @return $VaryLightGray;
     }
-    
-    @function set-text-color($bg-color){
-      @if (lightness($bg-color) > 70) {
-        @return $BrightRed;
-      } @else {
-        @return $VaryLightGray;
-      }
+  }
+  
+  @mixin set-bg-color($bg-color) {
+    background-color: $bg-color;
+    color:set-text-color($bg-color);  
+  }
+  
+  
+  
+  // Flex center and align
+
+  @mixin flexCenter($direction) {
+      display: flex;
+      align-items: center;
+      flex-direction: $direction;    
+  }
+
+  @mixin blockCenter($direction) {
+    display: block;
+    align-items: center;
+    flex-direction: $direction;  
+  }
+
+  @mixin flexStart($direction) {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: $direction;    
+}
+  
+  @mixin element-align($align,$margin) {
+      align-items: $align;
+      margin: $margin;
+  }
+  
+  @mixin  element-float($float, $margin) {
+      float:$float;
+      margin-left: $margin;    
+  }
+  
+  // Creates circle
+
+  @mixin circle($i){
+    border-radius: 100%;
+    height: $i;
+    width: $i;
+  }
+  
+  // Center Element on page
+  @mixin centerElement($top, $left){
+    top: $top;
+    left: $left;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    position: absolute;
+  }
+  
+  // Media Queries
+  
+  $tablet: 768;
+  $large: 1024;
+  $desktop: 1280;
+  
+  @mixin tablet {
+    @media (min-width: $tablet * 1px) {
+      @content;
     }
-    
-    @mixin set-bg-color($bg-color) {
-      background-color: $bg-color;
-      color:set-text-color($bg-color);  
+  }
+  
+  @mixin large {
+    @media (min-width: $large * 1px) {
+      @content;
     }
-    
-    @mixin brandName ($fontColor, $fontSize){
-      color:$fontColor;
-      font-size: $fontSize;
-      font-weight:  weight(bold);
-      
+  }
+  
+  @mixin desktop {
+    @media (min-width: $desktop * 1px) {
+      @content;
     }
-    
-    
-    @mixin flexCenter($direction) {
-        display: flex;
-        align-items: center;
-        flex-direction: $direction;    
-    }
-    
-    @mixin element-align($align,$margin) {
-        align-items: $align;
-        margin: $margin;
-    }
-    
-    @mixin  element-float($float, $margin) {
-        float:$float;
-        margin-left: $margin;    
-    }
-    
-    @mixin circle($i){
-      border-radius: 100%;
-      height: $i;
-      width: $i;
-    }
-    
-    @mixin centerElement($top, $left){
-      top: $top;
-      left: $left;
-      transform: translate(-50%, -50%);
-      z-index: 100;
-      position: absolute;
-    }
-    
-    // Media Queries
-    
-    $tablet: 768;
-    $large: 1024;
-    $desktop: 1280;
-    
-    @mixin tablet {
-      @media (min-width: $tablet * 1px) {
-        @content;
-      }
-    }
-    
-    @mixin large {
-      @media (min-width: $large * 1px) {
-        @content;
-      }
-    }
-    
-    @mixin desktop {
-      @media (min-width: $desktop * 1px) {
-        @content;
-      }
-    }
+  }
