@@ -41,6 +41,25 @@ body {
   flex-direction: column;
 }
 
+.filter {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 5px;
+  padding: 10px;
+  flex-wrap: nowrap;
+  margin-top: 50px;
+  box-shadow: 2px 2px 13px 0px #5ba4a4;
+}
+
+.filter .roles {
+  display: block;
+  align-items: center;
+  flex-direction: row;
+}
+
 .card {
   display: flex;
   align-items: flex-start;

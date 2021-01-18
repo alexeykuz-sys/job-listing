@@ -24,6 +24,20 @@
 
 }
 
+.filter {
+    @include flexCenter(row);
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    flex-wrap: nowrap;
+    margin-top: 50px;
+    box-shadow: 2px 2px 13px 0px #5ba4a4;
+    .roles {
+        @include blockCenter(row);
+    }
+}
+
 .card{
     
     @include flexStart(column);
