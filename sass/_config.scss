@@ -21,9 +21,9 @@ $font-weights: (
   // sets text color depending on bg color
   @function set-text-color($bg-color){
     @if (lightness($bg-color) > 70) {
-      @return $BrightRed;
+      @return $desaturatedDarkCyan;
     } @else {
-      @return $VaryLightGray;
+      @return $lightGrayishCyanBackground;
     }
   }
   

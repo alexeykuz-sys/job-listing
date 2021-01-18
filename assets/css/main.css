@@ -55,9 +55,57 @@ body {
 }
 
 .filter .roles {
-  display: block;
+  display: flex;
   align-items: center;
   flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.filter .roles .button-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-left: 2px;
+  background-color: #effafa;
+  padding: 4px 10px;
+  border-radius: 2px;
+  color: #5ba4a4;
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: 700;
+  font-size: 15px;
+  margin-left: 10px;
+  cursor: pointer;
+  padding: 1px;
+  font-size: 13.5px;
+  margin: 5px;
+}
+
+.filter .roles .button-wrapper .cross {
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.filter .roles .button-wrapper .cross:hover {
+  background-color: #7b8e8e;
+  color: #effafa;
+  transform: scale(0.9);
+}
+
+.filter .roles .button-wrapper svg {
+  background-color: #5ba4a4;
+}
+
+.filter .clear {
+  color: #7b8e8e;
+  font-weight: 700;
+  background-color: white;
+  cursor: pointer;
+}
+
+.filter .clear:hover {
+  text-decoration: underline;
+  color: #2c3a3a;
 }
 
 .card {
@@ -105,6 +153,7 @@ body {
   text-transform: uppercase;
   margin-left: 15px;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .card .brand-name .featured {
@@ -116,6 +165,7 @@ body {
   text-transform: uppercase;
   margin-left: 15px;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .card .job-title {
@@ -123,6 +173,7 @@ body {
   font-size: 15px;
   font-weight: 700;
   letter-spacing: .3px;
+  cursor: pointer;
 }
 
 .card .details-wrapper {
@@ -156,14 +207,20 @@ body {
   border-radius: 2px;
   color: #5ba4a4;
   text-align: center;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-weight: 700;
   font-size: 15px;
   margin-left: 10px;
+  cursor: pointer;
   flex-wrap: wrap;
   font-size: 10.5px;
   align-items: start;
   margin-top: 10px;
+}
+
+.card .roles .button:hover {
+  background-color: #5ba4a4;
+  color: #effafa;
 }
 
 @media (min-width: 768px) {

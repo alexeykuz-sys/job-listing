@@ -7,6 +7,7 @@
     text-transform: uppercase;
     margin-left: 15px;
     font-weight: weight(bold);
+    cursor: pointer;
 }
 
 @mixin  button2($background,$fontcolor)  {
@@ -15,9 +16,10 @@
     border-radius: 2px;
     color: $fontcolor;
     text-align: center;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-weight: weight(bold);
     font-size: $fontSize;
     margin-left: 10px;
+    cursor: pointer;
     
 }
