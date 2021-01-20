@@ -42,9 +42,7 @@ body {
 }
 
 .filter {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
+  display: none;
   justify-content: space-between;
   background-color: white;
   border-radius: 5px;
@@ -84,6 +82,8 @@ body {
 .filter .roles .button-wrapper .cross {
   margin-left: 4px;
   cursor: pointer;
+  background-color: #5ba4a4;
+  color: #effafa;
 }
 
 .filter .roles .button-wrapper .cross:hover {

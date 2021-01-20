@@ -24,8 +24,12 @@
 
 }
 
+// .filter {
+//     display: none;
+// }
 .filter {
-    @include flexCenter(row);
+    display: none;
+    // @include flexCenter(row);
     justify-content: space-between;
     background-color: white;
     border-radius: 5px;
@@ -47,6 +51,7 @@
             .cross{
                 margin-left: 4px;
                 cursor: pointer;
+                @include set-bg-color($desaturatedDarkCyan);
 
                 &:hover{
                     @include set-bg-color($darkGrayishCyan);

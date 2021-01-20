@@ -2,18 +2,20 @@ const filterRef= document.getElementById('filter');
 const clearRef = document.getElementById('clear');
 // const crossRef = filterRef.children[0].children[0].children[1];
 const buttonRef = document.querySelector('.button-wrapper')
-const buttonRole = document.querySelectorAll('.button');
+const buttonRole = document.querySelector('.button');
 
-console.log(buttonRole[0].innerHTML)
+console.log(filterRef.children[0].children[0])
+
 
 function filterHandler(){
-    filterRef.style.display = 'none';
+    filterRef.style.display=('flex');
+    
 }
-clearRef.addEventListener('click',filterHandler);
 
 
 // function roleButtonRefHandler(){
-//     crossRef.addEventListener('click', (event) => {
+//     addEventListener('click', (event) => {
+//         console.log(event.target.parentElement)
 //         if(event.target.parentElement.className = 'cross'){
 //             event.target.parentElement.parentElement.style.display = 'none';
 //         }
@@ -23,36 +25,31 @@ clearRef.addEventListener('click',filterHandler);
 // roleButtonRefHandler()
 
 
-// function newElement() {
-//     let divRef = document.createElement("div");
-//     let divButton = document.createElement('div'); 
-//     let divCross = document.createElementNS('<xmlns="http://www.w3.org/2000/svg" width="14" height="14"><path fill="#FFF" fill-rule="evenodd" d="M11.314 0l2.121 2.121-4.596 4.596 4.596 4.597-2.121 2.121-4.597-4.596-4.596 4.596L0 11.314l4.596-4.597L0 2.121 2.121 0l4.596 4.596L11.314 0z"/>', 'svg');
-//     divRef.className = "button-wrapper";
-//     divButton.className = 'button'
-//     divCross.className = "cross";
-//     divCross.id = 'cross'
-//     divRef.appendChild(divButton);
-//     divButton.innerHTML = 'dfdf'
-//     divRef.appendChild(divCross);
-//     document.getElementById("rolesRef").appendChild(divRef);
-    
-//   }
+function newElement(el) {
+    let divRef = document.createElement("div");
+    let divButton = document.createElement('div'); 
+    let divCross = document.createElement('img');
+    divCross.src = './images/icon-remove.svg'
+    divRef.className = "button-wrapper";
+    divButton.className = 'button'
+    divCross.className = "cross";
+    divCross.id = 'cross'
+    divRef.appendChild(divButton);
+    divButton.innerHTML = el
+    console.log(el)
+    divRef.appendChild(divCross);
+    document.getElementById("rolesRef").appendChild(divRef);
+   
+}
   
-  function buttonRoleHandler(){
-      buttonRole.forEach(button =>button.addEventListener('click', ()=>{
-        let divRef = document.createElement("div");
-        let divButton = document.createElement('div'); 
-        let divCross = document.createElementNS('<xmlns="http://www.w3.org/2000/svg" width="14" height="14"><path fill="#FFF" fill-rule="evenodd" d="M11.314 0l2.121 2.121-4.596 4.596 4.596 4.597-2.121 2.121-4.597-4.596-4.596 4.596L0 11.314l4.596-4.597L0 2.121 2.121 0l4.596 4.596L11.314 0z"/>', 'svg');
-        divRef.className = "button-wrapper";
-        divButton.className = 'button'
-        divCross.className = "cross";
-        divCross.id = 'cross'
-        divRef.appendChild(divButton);
-        divButton.innerHTML = button.innerHTML
-        divRef.appendChild(divCross);
-        document.getElementById("rolesRef").appendChild(divRef);
-      }))
-      
-  }
+function buttonRoleHandler(){
+    buttons = document.querySelectorAll('.button')
+    buttons.forEach(button => button.addEventListener('click', (e)=>{
+        click = e.target;
+        newElement(click.innerHTML)
+        filterHandler()
+    }))
+        
 
+}
 buttonRoleHandler()
