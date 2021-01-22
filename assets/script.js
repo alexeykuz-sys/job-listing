@@ -45,12 +45,21 @@ buttonRoleHandler()
 
 
 clearRef.addEventListener('click', (e)=> {
-   console.log(e.target.parentNode.children[0].children.length)
-    if(e.target.parentNode.children[0].hasChildNodes()){
-            rolesRef.removeChild(rolesRef.firstElementChild);
-            
-    } else if(e.target.parentNode.children[0].children.length = 0){
-        console.log('dfdf')
-    }
+   if(e.target.parentNode.children[0].hasChildNodes()){
+        rolesRef.removeChild(rolesRef.firstElementChild);
+        
+    } 
 })
+// else if(e.target.parentNode.children[0].firstElementChild= 'null'){
+//     filterRef.style.display = 'none';
+// }
 
+
+rolesRef.addEventListener('click',(e)=>{
+    let cross=e.target.parentNode.children[1]
+    if(cross.className = 'cross'){
+        rolesRef.removeChild(rolesRef.firstElementChild);
+
+    } 
+   
+})
