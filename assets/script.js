@@ -2,11 +2,12 @@ const filterRef= document.getElementById('filter');
 const clearRef = document.getElementById('clear');
 const buttonRef = document.querySelector('.button-wrapper')
 const buttonRole = document.querySelectorAll('.button');
-const cards = document.querySelectorAll('.card')
+const cards = document.querySelectorAll('.card');
+const rolesRef = document.getElementById('rolesRef');
 
 
-function filterHandler(){
-    filterRef.style.display=('flex');
+function filterHandler(element){
+    filterRef.style.display = element;
 }
 
 
@@ -34,10 +35,22 @@ function buttonRoleHandler(){
         click = e.target;
         console.log(click)
         newElement(click.innerHTML)
-        filterHandler()
+        filterHandler('flex')
         
     }))
 }
 buttonRoleHandler()
 
+
+
+
+clearRef.addEventListener('click', (e)=> {
+   console.log(e.target.parentNode.children[0].children.length)
+    if(e.target.parentNode.children[0].hasChildNodes()){
+            rolesRef.removeChild(rolesRef.firstElementChild);
+            
+    } else if(e.target.parentNode.children[0].children.length = 0){
+        console.log('dfdf')
+    }
+})
 
