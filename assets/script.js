@@ -1,6 +1,6 @@
 const filterRef= document.getElementById('filter');
 const clearRef = document.getElementById('clear');
-const buttonRef = document.querySelector('.button-wrapper')
+const buttonRef = document.querySelectorAll('.button-wrapper')
 const buttonRole = document.querySelectorAll('.button');
 const cards = document.querySelectorAll('.card');
 const rolesRef = document.getElementById('rolesRef');
@@ -8,6 +8,11 @@ const rolesRef = document.getElementById('rolesRef');
 
 function filterHandler(element){
     filterRef.style.display = element;
+}
+
+function removeEl(){
+    rolesRef.removeChild(rolesRef.firstElementChild);
+
 }
 
 
@@ -46,8 +51,7 @@ buttonRoleHandler()
 
 clearRef.addEventListener('click', (e)=> {
    if(e.target.parentNode.children[0].hasChildNodes()){
-        rolesRef.removeChild(rolesRef.firstElementChild);
-        
+        removeEl()
     } 
 })
 // else if(e.target.parentNode.children[0].firstElementChild= 'null'){
@@ -58,8 +62,13 @@ clearRef.addEventListener('click', (e)=> {
 rolesRef.addEventListener('click',(e)=>{
     let cross=e.target.parentNode.children[1]
     if(cross.className = 'cross'){
-        rolesRef.removeChild(rolesRef.firstElementChild);
-
+        removeEl()
     } 
    
 })
+
+cards.forEach(card => {
+    buttonRole.forEach(button =>button.addEventListener('click',(e)=>{
+        if()
+    }))
+});
