@@ -54,9 +54,6 @@ clearRef.addEventListener('click', (e)=> {
         removeEl()
     } 
 })
-// else if(e.target.parentNode.children[0].firstElementChild= 'null'){
-//     filterRef.style.display = 'none';
-// }
 
 
 rolesRef.addEventListener('click',(e)=>{
@@ -67,15 +64,80 @@ rolesRef.addEventListener('click',(e)=>{
    
 })
 
-cards.forEach(card => {
+// cards.forEach(card => {
+//     let roles = card.children[1].children[0].children
+//     for(i=0;i<roles.length; i++){
+//         // console.log(roles[i])
+//         // console.log(rolesArray)
+//         roles[i].addEventListener('click', (e)=>{
+//             // console.log(e.target)
+//             let buttons = Array.prototype.slice.call(document.querySelectorAll('.button'));
+//             buttons.forEach(button => {
+//                 const result = buttons.filter(button => button.innerHTML==e.target.innerHTML)
+//                 // console.log(result)
+//                 for(i=0;i<result.length;i++){
+//                 result[i].classList.add('active')
+//                 // console.log(result[i])
+//                 }
+//             })
+           
+//     })
+// } 
+// })
+
+let cardsArray = Array.prototype.slice.call(document.querySelectorAll('.card'));
+
+cardsArray.forEach(card => {
     let roles = card.children[1].children[0].children
     for(i=0;i<roles.length; i++){
-        console.log(roles[i])
+        // console.log(roles[i])
         // console.log(rolesArray)
         roles[i].addEventListener('click', (e)=>{
-            console.log(e.target)
+            // console.log(e.target)
+            let buttons = Array.prototype.slice.call(document.querySelectorAll('.button'));
+            buttons.forEach(button => {
+                const result = buttons.filter(button => button.innerHTML==e.target.innerHTML)
+                // console.log(result)
+                for(i=0;i<result.length;i++){
+                result[i].classList.add('active')
+                hideCards()
+                }
+            })
            
-             
     })
 } 
 })
+
+
+function hideCards(){
+    var find = function(className) {
+        var elements = document.getElementsByClassName('active');
+        var elementsArray = [].slice.call(elements);
+        console.log(elementsArray)
+        for (var index = 0; index < elementsArray.length; index++) {
+          var element = elementsArray[index];
+          console.log(element.className)
+          if (element.className == 'active') {
+                // el = element.parentNode.parentNode.parentNode
+                // el.style.display = 'none'
+                return true
+          } else if (element.className != 'active' ) {
+                el = element.parentNode.parentNode.parentNode
+                el.style.display = 'none'
+          }
+        }
+        
+        return false;
+        // return null; // If you wish to return null instead of false (comment out previous line if this option is used)
+      }
+      console.log(find('active'));
+}
+// for(let i=0;i<cardsArray.length;i++){
+    // console.log(cardsArray[i].children[1].children[0].children)
+    // if(cardsArray[i].children[1].children[0].children[0].children.className != 'active'){
+    //     console.log(cardsArray[i])
+
+    // }
+
+    
+// }
