@@ -69,28 +69,13 @@ rolesRef.addEventListener('click',(e)=>{
 
 cards.forEach(card => {
     let roles = card.children[1].children[0].children
-    // console.log(roles)
-    for(i=0; i<roles.length; i++){
-        // console.log(roles[i])
+    for(i=0;i<roles.length; i++){
+        console.log(roles[i])
+        // console.log(rolesArray)
         roles[i].addEventListener('click', (e)=>{
             console.log(e.target)
-            // console.log(roles)
-            for(i=0;i<cards.length;i++){
-                for(j=0;j<roles.length; j++){
-                    console.log(roles[j])
-                // console.log(e.target)
-                // console.log(cards[i].children[1].children[0].children)
-                // if(cards[i].children[1].children[0].children - e.target){
-                //     cards[i].style.display='none'
-                // }
-                if(roles[j] == e.target ){
-                return;
-            } else if(roles[j] != e.target && !e.target ){
-                card[i].style.display = 'none'
-            }
-        }
-        }
-            
-        })
-    }
-});
+           
+             
+    })
+} 
+})
