@@ -96,12 +96,18 @@ cardsArray.forEach(card => {
             // console.log(e.target)
             let buttons = Array.prototype.slice.call(document.querySelectorAll('.button'));
             buttons.forEach(button => {
-                const result = buttons.filter(button => button.innerHTML==e.target.innerHTML)
+                const result = buttons.filter(button => button.innerHTML !==e.target.innerHTML)
                 // console.log(result)
                 for(i=0;i<result.length;i++){
+                    if(result){
+                result[i].classList.add('inactive')
+                hideCards()
+                } else if(!result){
                 result[i].classList.add('active')
                 hideCards()
-                }
+            }
+        }
+
             })
            
     })
@@ -111,26 +117,27 @@ cardsArray.forEach(card => {
 
 function hideCards(){
     var find = function(className) {
-        var elements = document.getElementsByClassName('active');
+        var elements = document.getElementsByClassName('inactive');
         var elementsArray = [].slice.call(elements);
         console.log(elementsArray)
-        for (var index = 0; index < elementsArray.length; index++) {
+        for (let index = 0; index < elementsArray.length; index++) {
           var element = elementsArray[index];
           console.log(element.className)
-          if (element.className == 'active') {
-                // el = element.parentNode.parentNode.parentNode
-                // el.style.display = 'none'
-                return true
-          } else if (element.className != 'active' ) {
+          if (element.className.indexOf(className)==1) {
                 el = element.parentNode.parentNode.parentNode
                 el.style.display = 'none'
+        //         return true
+        //   } else if (element.className != 'active' ) {
+        //         el = element.parentNode.parentNode.parentNode
+        //         el.style.display = 'none'
           }
+        
         }
         
         return false;
         // return null; // If you wish to return null instead of false (comment out previous line if this option is used)
       }
-      console.log(find('active'));
+      console.log(find('inactive'));
 }
 // for(let i=0;i<cardsArray.length;i++){
     // console.log(cardsArray[i].children[1].children[0].children)
