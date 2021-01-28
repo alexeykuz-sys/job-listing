@@ -75,10 +75,7 @@
     }
 }
 
-.container.card.new.active{
-    display:flex;
-}
-
+ 
 .card{
     @include flexStart(column);
     background-color: white;
