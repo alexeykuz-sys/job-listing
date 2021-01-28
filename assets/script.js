@@ -64,87 +64,37 @@ rolesRef.addEventListener('click',(e)=>{
    
 })
 
-// cards.forEach(card => {
-//     let roles = card.children[1].children[0].children
-//     for(i=0;i<roles.length; i++){
-//         // console.log(roles[i])
-//         // console.log(rolesArray)
-//         roles[i].addEventListener('click', (e)=>{
-//             // console.log(e.target)
-//             let buttons = Array.prototype.slice.call(document.querySelectorAll('.button'));
-//             buttons.forEach(button => {
-//                 const result = buttons.filter(button => button.innerHTML==e.target.innerHTML)
-//                 // console.log(result)
-//                 for(i=0;i<result.length;i++){
-//                 result[i].classList.add('active')
-//                 // console.log(result[i])
-//                 }
-//             })
-           
-//     })
-// } 
-// })
-
 let cardsArray = Array.prototype.slice.call(document.querySelectorAll('.card'));
 
 cardsArray.forEach(card => {
     let roles = card.children[1].children[0].children
     for(i=0;i<roles.length; i++){
-        // console.log(roles[i])
-        // console.log(rolesArray)
         roles[i].addEventListener('click', (e)=>{
-            // console.log(e.target)
             let buttons = Array.prototype.slice.call(document.querySelectorAll('.button'));
             buttons.forEach(button => {
-                const result = buttons.filter(button => button.innerHTML !==e.target.innerHTML)
-                // console.log(result)
+                const result = buttons.filter(button => button.innerHTML == e.target.innerHTML)
+                const resultN = buttons.filter(button => button.innerHTML !== e.target.innerHTML)
+                // console.log(result.length, resultN.length)
                 for(i=0;i<result.length;i++){
                     if(result){
-                result[i].classList.add('inactive')
-                hideCards()
-                } else if(!result){
-                result[i].classList.add('active')
-                hideCards()
-            }
-        }
+                        result[i].parentNode.parentNode.parentNode.classList.remove('inactive')
+                        result[i].parentNode.parentNode.parentNode.classList.add('active')
+                        // console.log(result[i])
+                        hideCards()
+                    }
+
+                }
 
             })
-           
-    })
-} 
+        })
+    } 
 })
 
-
 function hideCards(){
-    var find = function(className) {
-        var elements = document.getElementsByClassName('inactive');
-        var elementsArray = [].slice.call(elements);
-        console.log(elementsArray)
-        for (let index = 0; index < elementsArray.length; index++) {
-          var element = elementsArray[index];
-          console.log(element.className)
-          if (element.className.indexOf(className)==1) {
-                el = element.parentNode.parentNode.parentNode
-                el.style.display = 'none'
-        //         return true
-        //   } else if (element.className != 'active' ) {
-        //         el = element.parentNode.parentNode.parentNode
-        //         el.style.display = 'none'
-          }
-        
-        }
-        
-        return false;
-        // return null; // If you wish to return null instead of false (comment out previous line if this option is used)
-      }
-      console.log(find('inactive'));
+    inActives= document.querySelectorAll('.inactive')
+    // console.log(inActives)
+    inActives.forEach(inActive =>{
+        console.log(inActive)
+        inActive.style.display = 'none'
+    })
 }
-// for(let i=0;i<cardsArray.length;i++){
-    // console.log(cardsArray[i].children[1].children[0].children)
-    // if(cardsArray[i].children[1].children[0].children[0].children.className != 'active'){
-    //     console.log(cardsArray[i])
-
-    // }
-
-    
-// }
