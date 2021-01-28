@@ -92,9 +92,20 @@ cardsArray.forEach(card => {
 
 function hideCards(){
     inActives= document.querySelectorAll('.inactive')
-    // console.log(inActives)
-    inActives.forEach(inActive =>{
-        console.log(inActive)
-        inActive.style.display = 'none'
+    inActivesArray = Array.from(inActives)
+    console.log(inActivesArray)
+    inActivesArray.forEach(el =>{
+        console.log(el)
+        if(el.classList.contains('inactive')){
+        el.style.display = 'none';
+        }
     })
+    
+    // inActives.filter()
+    // console.log(inActives)
+    // inActives.forEach(inActive =>{
+    //     // console.log(inActive)
+    //     inActive.style.display = 'none'
+    // })
 }
+
