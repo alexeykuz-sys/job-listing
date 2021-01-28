@@ -108,6 +108,10 @@ body {
   color: #2c3a3a;
 }
 
+.container.card.new.active {
+  display: flex;
+}
+
 .card {
   display: flex;
   align-items: flex-start;

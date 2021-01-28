@@ -32,23 +32,6 @@ function newElement(el) {
     
 }
 
-
-
-function buttonRoleHandler(){
-    // buttons = document.querySelectorAll('.button')
-    buttonRole.forEach(button => button.addEventListener('click', (e)=>{
-        click = e.target;
-        // console.log(click)
-        newElement(click.innerHTML)
-        filterHandler('flex')
-        
-    }))
-}
-buttonRoleHandler()
-
-
-
-
 clearRef.addEventListener('click', (e)=> {
    if(e.target.parentNode.children[0].hasChildNodes()){
         removeEl()
@@ -64,48 +47,52 @@ rolesRef.addEventListener('click',(e)=>{
    
 })
 
-let cardsArray = Array.prototype.slice.call(document.querySelectorAll('.card'));
 
-cardsArray.forEach(card => {
+cards.forEach(card => {
     let roles = card.children[1].children[0].children
-    for(i=0;i<roles.length; i++){
-        roles[i].addEventListener('click', (e)=>{
-            let buttons = Array.prototype.slice.call(document.querySelectorAll('.button'));
+    console.log(roles)
+    rolesArray = Array.from(roles)
+    // for(i=0;i<roles.length; i++){
+        // console.log(rolesArray)
+        rolesArray.forEach(role =>role.addEventListener('click', (e)=>{
+            selectedRole = e.target;
+            newElement(selectedRole.innerHTML);
+            filterHandler('flex');
+            let buttons = document.querySelectorAll('.button');
+            
             buttons.forEach(button => {
-                const result = buttons.filter(button => button.innerHTML == e.target.innerHTML)
-                const resultN = buttons.filter(button => button.innerHTML !== e.target.innerHTML)
-                // console.log(result.length, resultN.length)
-                for(i=0;i<result.length;i++){
-                    if(result){
-                        result[i].parentNode.parentNode.parentNode.classList.remove('inactive')
-                        result[i].parentNode.parentNode.parentNode.classList.add('active')
-                        // console.log(result[i])
-                        hideCards()
-                    }
-
+                let filteredRoles = button.innerHTML;
+                if(selectedRole.innerHTML === filteredRoles){
+                    console.log(button.parentNode.parentNode.parentNode)
+                    button.parentNode.parentNode.parentNode.classList.remove('hide')
+                    button.parentNode.parentNode.parentNode.classList.add('active')
+                } 
+                if(button.parentNode.parentNode.parentNode.classList.contains('hide')){
+                    button.parentNode.parentNode.parentNode.style.display = 'none'
                 }
-
             })
-        })
-    } 
+        }))
+    // }
 })
 
-function hideCards(){
-    inActives= document.querySelectorAll('.inactive')
-    inActivesArray = Array.from(inActives)
-    console.log(inActivesArray)
-    inActivesArray.forEach(el =>{
-        console.log(el)
-        if(el.classList.contains('inactive')){
-        el.style.display = 'none';
-        }
-    })
-    
+ 
+
+// function hideCards(){
+//     inActives= document.querySelectorAll('.hide')
+//     inActivesArray = Array.from(inActives)
+//     console.log(inActives)
+//     inActivesArray.forEach(card =>{
+//         // console.log(card)
+//         if(card.classList.contains('hide')){
+//         card.style.display = 'none';
+//         }
+//     })
+// }
     // inActives.filter()
     // console.log(inActives)
     // inActives.forEach(inActive =>{
     //     // console.log(inActive)
     //     inActive.style.display = 'none'
     // })
-}
+// }
 
