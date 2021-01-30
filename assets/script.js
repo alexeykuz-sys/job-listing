@@ -62,7 +62,6 @@ cards.forEach(card => {
             buttonHandler()
             hideCards()
         }))
-      
 })
 
 function buttonHandler(){
