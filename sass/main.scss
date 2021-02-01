@@ -75,9 +75,6 @@
     }
 }
 
-.disableSpan{
-    display: none;
-}
 .card{
     @include flexStart(column);
     background-color: white;
@@ -90,7 +87,7 @@
     
     &.new {
         border-left: 5px solid $desaturatedDarkCyan;
-
+        
     }
     
     
@@ -114,10 +111,15 @@
         }
         .new {
             @include button1($desaturatedDarkCyan, $lightGrayishCyanBackground);
+            font-size: 10px;
         }
+
         .featured{
             @include button1($veryDarkGrayishCyan, $lightGrayishCyanBackground);
-            
+            font-size: 10px;    
+        }
+        .disableSpan{
+            display: none;
         }
     }
 

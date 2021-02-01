@@ -108,10 +108,6 @@ body {
   color: #2c3a3a;
 }
 
-.container.card.new.active {
-  display: flex;
-}
-
 .card {
   display: flex;
   align-items: flex-start;
@@ -158,6 +154,7 @@ body {
   margin-left: 15px;
   font-weight: 700;
   cursor: pointer;
+  font-size: 10px;
 }
 
 .card .brand-name .featured {
@@ -170,6 +167,11 @@ body {
   margin-left: 15px;
   font-weight: 700;
   cursor: pointer;
+  font-size: 10px;
+}
+
+.card .brand-name .disableSpan {
+  display: none;
 }
 
 .card .job-title {
