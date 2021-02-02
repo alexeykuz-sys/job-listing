@@ -120,6 +120,10 @@ body {
   box-shadow: 2px 2px 13px 0px #5ba4a4;
 }
 
+.card.hideElements {
+  display: none;
+}
+
 .card.new {
   border-left: 5px solid #5ba4a4;
 }

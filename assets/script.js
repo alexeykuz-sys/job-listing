@@ -1,21 +1,21 @@
 const cards = document.querySelector    (".cards")
-//const modal = document.querySelector(".modal")
+const filter = document.querySelector("#filter")
 //const filterArray = ["role", "level", "tool", "language"]
 const populatedArray = [];
-
+console.log(populatedArray)
 // console.log(cards)
 const getData = () => {
   fetch('./data.json')
     .then(data => data.json())
     .then(data => {
-    //  console.log(data)
+    //  console.log(data[0].role)
       data.forEach(element => {
-        // console.log(element.company)
+        // console.log(element.role)
         const card = document.createElement("section")
         card.classList.add("card")
         cards.appendChild(card)
         template(card, element)
-        // console.log(card)
+        // console.log(template)
 
       });
     })
@@ -75,25 +75,55 @@ function newElement(el) {
     
 }
 
+// check if button card targeted
+
 cards.addEventListener('click',(ev)=>{
     const card = Array.from(document.querySelectorAll('.card'))
+
     const targetElement = ev.target
+
     const targetParent = targetElement.closest('section')
     const parental = Array.from(document.querySelectorAll("section"))
-    console.log(parental)
+    
 
     
-  if (ev.target.tagName !== "BUTTON") {
-    return
-  }
+//   if (ev.target.tagName !== "BUTTON") {
+//     return
+//   }
 
-  if (!populatedArray.includes(targetElement.innerHTML)) {
-    populateModal(targetElement.innerHTML)
-  } else {
-    return
-  }
+//   if (!populatedArray.includes(targetElement.innerHTML)) {
+//     populateModal(targetElement.innerHTML)
+//   } else {
+//     return
+//   }
 
 
-  console.log(populatedArray)
+//   console.log(populatedArray)
+    card.forEach(elm => {
+        elm.classList.add("hideElements")
+    })
 
+    card.filter((elm, idx) => {
+        //get all buttons in card , buttons are used for the filter only
+        const btns = Array.from(elm.querySelectorAll("button"))
+        //loop through the buttons one by one    
+        btns.forEach(btn => {
+            // for the selected/clicked button
+            // add a class to the card parent 
+            if (btn.innerHTML === targetElement.innerHTML) {
+                elm.classList.add(targetElement.innerHTML)
+            // check for the all cards that have the classes in the populatedArray
+            // if found is true - display those cards only - filtering used every method
+                const found = populatedArray.every(r => elm.classList.contains(r))
+                console.log(found)
+
+                if (found) {
+                    elm.classList.remove("hideElements")
+                    console.log(targetElement.innerHTML)
+                }
+            }   
+        })
+    })
 })
+
+

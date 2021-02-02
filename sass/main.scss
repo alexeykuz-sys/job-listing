@@ -75,6 +75,7 @@
     }
 }
 
+
 .card{
     @include flexStart(column);
     background-color: white;
@@ -84,7 +85,10 @@
     margin-top: 50px;
     box-shadow: 2px 2px 13px 0px $desaturatedDarkCyan;
 
-    
+    &.hideElements {
+        display: none;
+    }
+
     &.new {
         border-left: 5px solid $desaturatedDarkCyan;
         
