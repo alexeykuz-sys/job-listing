@@ -10,13 +10,12 @@ const getData = () => {
     .then(data => {
     //  console.log(data[0].role)
       data.forEach(element => {
-        // console.log(element.role)
+       
         const card = document.createElement("section")
         card.classList.add("card")
         cards.appendChild(card)
         template(card, element)
-        // console.log(template)
-
+        
       });
     })
     .catch(err => console.log(err))
@@ -55,25 +54,25 @@ const template = (card, element) => {
         </div>   
   `
   }
-  
+  console.log(template)
 //   create new element in filter
 
 
-function newElement(el) {
-    let divRef = document.createElement("div");
-    let divButton = document.createElement('div'); 
-    let divCross = document.createElement('img');
-    divCross.src = './images/icon-remove.svg'
-    divRef.className = "button-wrapper";
-    divButton.className = 'button-filter'
-    divCross.className = "cross";
-    divCross.id = 'cross'
-    divRef.appendChild(divButton);
-    divButton.innerHTML = el
-    divRef.appendChild(divCross);
-    document.getElementById("rolesRef").appendChild(divRef);
+// function newElement(el) {
+//     let divRef = document.createElement("div");
+//     let divButton = document.createElement('div'); 
+//     let divCross = document.createElement('img');
+//     divCross.src = './images/icon-remove.svg'
+//     divRef.className = "button-wrapper";
+//     divButton.className = 'button-filter'
+//     divCross.className = "cross";
+//     divCross.id = 'cross'
+//     divRef.appendChild(divButton);
+//     divButton.innerHTML = el
+//     divRef.appendChild(divCross);
+//     document.getElementById("rolesRef").appendChild(divRef);
     
-}
+// }
 
 // check if button card targeted
 
@@ -96,9 +95,8 @@ cards.addEventListener('click',(ev)=>{
 //   } else {
 //     return
 //   }
-
-
-//   console.log(populatedArray)
+console.log(targetParent, targetElement)
+console.log(parental)
     card.forEach(elm => {
         elm.classList.add("hideElements")
     })
@@ -112,14 +110,18 @@ cards.addEventListener('click',(ev)=>{
             // add a class to the card parent 
             if (btn.innerHTML === targetElement.innerHTML) {
                 elm.classList.add(targetElement.innerHTML)
+                console.log('populatedAr ',populatedArray)
             // check for the all cards that have the classes in the populatedArray
             // if found is true - display those cards only - filtering used every method
-                const found = populatedArray.every(r => elm.classList.contains(r))
-                console.log(found)
+                const found = populatedArray.every((r) => {
+                    console.log('r: ',r)
+                    return elm.classList.contains(r)
+                })
+               
 
                 if (found) {
                     elm.classList.remove("hideElements")
-                    console.log(targetElement.innerHTML)
+                    // console.log(targetElement.innerHTML)
                 }
             }   
         })
