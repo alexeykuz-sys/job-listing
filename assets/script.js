@@ -1,131 +1,213 @@
-const cards = document.querySelector    (".cards")
-const filter = document.querySelector("#filter")
-//const filterArray = ["role", "level", "tool", "language"]
-const populatedArray = [];
-console.log(populatedArray)
-// console.log(cards)
-const getData = () => {
-  fetch('./data.json')
-    .then(data => data.json())
-    .then(data => {
-    //  console.log(data[0].role)
-      data.forEach(element => {
-       
-        const card = document.createElement("section")
-        card.classList.add("card")
-        cards.appendChild(card)
-        template(card, element)
-        
-      });
-    })
-    .catch(err => console.log(err))
-}
 
-getData()
-
+const jobs = [
+    {
+      "id": 1,
+      "company": "Photosnap",
+      "logo": "./images/photosnap.svg",
+      "new": true,
+      "featured": true,
+      "position": "Senior Frontend Developer",
+      "role": "Frontend",
+      "level": "Senior",
+      "postedAt": "1d ago",
+      "contract": "Full Time",
+      "location": "USA Only",
+      "languages": ["HTML", "CSS", "JavaScript"],
+      "tools": []
+    },
+    {
+      "id": 2,
+      "company": "Manage",
+      "logo": "./images/manage.svg",
+      "new": true,
+      "featured": true,
+      "position": "Fullstack Developer",
+      "role": "Fullstack",
+      "level": "Midweight",
+      "postedAt": "1d ago",
+      "contract": "Part Time",
+      "location": "Remote",
+      "languages": ["Python"],
+      "tools": ["React"]
+    },
+    {
+      "id": 3,
+      "company": "Account",
+      "logo": "./images/account.svg",
+      "new": true,
+      "featured": false,
+      "position": "Junior Frontend Developer",
+      "role": "Frontend",
+      "level": "Junior",
+      "postedAt": "2d ago",
+      "contract": "Part Time",
+      "location": "USA Only",
+      "languages": ["JavaScript"],
+      "tools": ["React", "Sass"]
+    },
+    {
+      "id": 4,
+      "company": "MyHome",
+      "logo": "./images/myhome.svg",
+      "new": false,
+      "featured": false,
+      "position": "Junior Frontend Developer",
+      "role": "Frontend",
+      "level": "Junior",
+      "postedAt": "5d ago",
+      "contract": "Contract",
+      "location": "USA Only",
+      "languages": ["CSS", "JavaScript"],
+      "tools": []
+    },
+    {
+      "id": 5,
+      "company": "Loop Studios",
+      "logo": "./images/loop-studios.svg",
+      "new": false,
+      "featured": false,
+      "position": "Software Engineer",
+      "role": "FullStack",
+      "level": "Midweight",
+      "postedAt": "1w ago",
+      "contract": "Full Time",
+      "location": "Worldwide",
+      "languages": ["JavaScript"],
+      "tools": ["Ruby", "Sass"]
+    },
+    {
+      "id": 6,
+      "company": "FaceIt",
+      "logo": "./images/faceit.svg",
+      "new": false,
+      "featured": false,
+      "position": "Junior Backend Developer",
+      "role": "Backend",
+      "level": "Junior",
+      "postedAt": "2w ago",
+      "contract": "Full Time",
+      "location": "UK Only",
+      "languages": ["Ruby"],
+      "tools": ["RoR"]
+    },
+    {
+      "id": 7,
+      "company": "Shortly",
+      "logo": "./images/shortly.svg",
+      "new": false,
+      "featured": false,
+      "position": "Junior Developer",
+      "role": "Frontend",
+      "level": "Junior",
+      "postedAt": "2w ago",
+      "contract": "Full Time",
+      "location": "Worldwide",
+      "languages": ["HTML", "JavaScript"],
+      "tools": ["Sass"]
+    },
+    {
+      "id": 8,
+      "company": "Insure",
+      "logo": "./images/insure.svg",
+      "new": false,
+      "featured": false,
+      "position": "Junior Frontend Developer",
+      "role": "Frontend",
+      "level": "Junior",
+      "postedAt": "2w ago",
+      "contract": "Full Time",
+      "location": "USA Only",
+      "languages": ["JavaScript"],
+      "tools": ["Vue", "Sass"]
+    },
+    {
+      "id": 9,
+      "company": "Eyecam Co.",
+      "logo": "./images/eyecam-co.svg",
+      "new": false,
+      "featured": false,
+      "position": "Full Stack Engineer",
+      "role": "Fullstack",
+      "level": "Midweight",
+      "postedAt": "3w ago",
+      "contract": "Full Time",
+      "location": "Worldwide",
+      "languages": ["JavaScript", "Python"],
+      "tools": ["Django"]
+    },
+    {
+      "id": 10,
+      "company": "The Air Filter Company",
+      "logo": "./images/the-air-filter-company.svg",
+      "new": false,
+      "featured": false,
+      "position": "Front-end Dev",
+      "role": "Frontend",
+      "level": "Junior",
+      "postedAt": "1mo ago",
+      "contract": "Part Time",
+      "location": "Worldwide",
+      "languages": ["JavaScript"],
+      "tools": ["React", "Sass"]
+    }
+  ]
+  
 
 const template = (card, element) => {
     card.innerHTML = `
         <div class="card-top">        
-            <img src=${element.logo} class="logo" alt="${element.company}">
-            <div class="job-title-wrapper">
-                <div class='brand-name'>
-                    <p>${element.company}</p   >
-                    ${element.new ? `<span class="new">New!</span>` : `<span class="disableSpan">New!</span>`}
+            <img src=${element.logo} class="logo" alt="${element.company}">	        
+            <div class="job-title-wrapper">	          
+                <div class='brand-name'>	        
+                    <p>${element.company}</p>	                 
+                    ${element.new ? `<span class="new">New!</span>` : `<span class="disableSpan">New!</span>`}	                    
                     ${element.featured ? `<span class="featured">Featured</span>` : `<span class="disableSpan">Featured</span>`}
                 </div>
-                <p class="job-title">${element.position}</p>
+                <div class="job-title">${element.position}</div>
                 <div class='details-wrapper'>
                     <div>${element.postedAt}</div>
                     <div class="dot"></div>
-                    <div>${element.contract}</div>
-                    <div class="dot"></div>
                     <div>${element.location}</div>
-                </div>
-            </div>
-        </div>
+                </div>	               
+            </div>	           
+        </div>	
         <div class="card-bottom">
             <div class='roles'>
-                <button class="button role actionBtn">${element.role}</button>
-                <button class="button level actionBtn">${element.level}</button>
-                ${element.languages.map(lang => `<button class="button language actionBtn">${lang}</button>`).join("")}
-                ${element.tools.map(tool => `<button class="button tool actionBtn">${tool}</button>`).join("")}
+                <button class="button role">${element.role}</button>
+                <button class="button level">${element.level}</button>
+                ${element.languages.map(lang => `<button class="button language">${lang}</button>`).join("")}	                
+                ${element.tools.map(tool => `<button class="button tool">${tool}</button>`).join("")}
             </div>
         </div>   
-  `
-  }
-  console.log(template)
-//   create new element in filter
+    `
+}
 
-
-// function newElement(el) {
-//     let divRef = document.createElement("div");
-//     let divButton = document.createElement('div'); 
-//     let divCross = document.createElement('img');
-//     divCross.src = './images/icon-remove.svg'
-//     divRef.className = "button-wrapper";
-//     divButton.className = 'button-filter'
-//     divCross.className = "cross";
-//     divCross.id = 'cross'
-//     divRef.appendChild(divButton);
-//     divButton.innerHTML = el
-//     divRef.appendChild(divCross);
-//     document.getElementById("rolesRef").appendChild(divRef);
-    
-// }
-
-// check if button card targeted
-
-cards.addEventListener('click',(ev)=>{
-    const card = Array.from(document.querySelectorAll('.card'))
-
-    const targetElement = ev.target
-
-    const targetParent = targetElement.closest('section')
-    const parental = Array.from(document.querySelectorAll("section"))
-    
-
-    
-//   if (ev.target.tagName !== "BUTTON") {
-//     return
-//   }
-
-//   if (!populatedArray.includes(targetElement.innerHTML)) {
-//     populateModal(targetElement.innerHTML)
-//   } else {
-//     return
-//   }
-console.log(targetParent, targetElement)
-console.log(parental)
-    card.forEach(elm => {
-        elm.classList.add("hideElements")
-    })
-
-    card.filter((elm, idx) => {
-        //get all buttons in card , buttons are used for the filter only
-        const btns = Array.from(elm.querySelectorAll("button"))
-        //loop through the buttons one by one    
-        btns.forEach(btn => {
-            // for the selected/clicked button
-            // add a class to the card parent 
-            if (btn.innerHTML === targetElement.innerHTML) {
-                elm.classList.add(targetElement.innerHTML)
-                console.log('populatedAr ',populatedArray)
-            // check for the all cards that have the classes in the populatedArray
-            // if found is true - display those cards only - filtering used every method
-                const found = populatedArray.every((r) => {
-                    console.log('r: ',r)
-                    return elm.classList.contains(r)
-                })
-               
-
-                if (found) {
-                    elm.classList.remove("hideElements")
-                    // console.log(targetElement.innerHTML)
-                }
-            }   
-        })
-    })
+jobs.forEach(element=>{
+    const cards = document.getElementById('cards')
+    let card = document.createElement('card')
+    card.className = 'card'
+    cards.appendChild(card)
+    console.log(cards)
+    template(card,element)
 })
 
+filteredCards = [];
+rejectedCards = [];
 
+const card = document.querySelectorAll('.card')
+const buttons = Array.from(document.querySelectorAll('.button'))
+
+function clickHandler(){
+    cardsArray = Array.from(card)
+    cardsArray.forEach(card => card.addEventListener('click', (ev)=>{
+    const targetEl = ev.target;
+    buttons.forEach(button =>{
+        if(button.innerHTML == targetEl.innerHTML){
+        let filteredButton = button.classList.add(targetEl.innerHTML)
+        
+        } 
+    })
+}))
+
+}
+clickHandler()
