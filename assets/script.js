@@ -201,31 +201,13 @@ cardsArray.forEach(card=>{
   card.classList.add('show')
 })
 
-function clickEvent(){
-  cardsArray.forEach(card => card.addEventListener('click', (ev)=>{
-    const targetEl = ev.target;
-    buttons.forEach(button =>{
-      let filteredCard = button.parentElement.parentElement.parentElement
-      
-        if(button.innerHTML === targetEl.innerHTML){
-          filteredCard.classList.remove('show')
-          filteredCard.classList.add(targetEl.innerHTML) 
-        }
-      })
-      rejectedCards()
-  }))
-}
-
-clickEvent()
-
-function rejectedCards(){
-  cardsArray.forEach(card=>{
-    const found = cardsArray.map(card => card.className===('show'))
-    console.log(found)
-    if(card.classList.contains('show')){
-      card.classList.remove('show')
-      card.classList.add('hide')
-    } 
+buttons.forEach(button =>button.addEventListener('click', (event)=>{
+  let filteredCard = button.parentElement.parentElement.parentElement
+  const targetEl = event.target;
+  filteredButtons = buttons.filter(button=>button.innerHTML===targetEl.innerHTML)
+  filteredButtons.forEach(filter=>{
+    let filteredCard = filter.parentElement.parentElement.parentElement
+    filteredCard.classList.add(targetEl.innerHTML)
+    filteredCard.classList.remove('show')
   })
- 
-}
+  }))
