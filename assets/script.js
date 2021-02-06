@@ -187,27 +187,45 @@ jobs.forEach(element=>{
     let card = document.createElement('card')
     card.className = 'card'
     cards.appendChild(card)
-    console.log(cards)
     template(card,element)
 })
 
-filteredCards = [];
-rejectedCards = [];
+filteredCardsArray = [];
+rejectedCardsArray = [];
 
 const card = document.querySelectorAll('.card')
 const buttons = Array.from(document.querySelectorAll('.button'))
+cardsArray = Array.from(card)
 
-function clickHandler(){
-    cardsArray = Array.from(card)
-    cardsArray.forEach(card => card.addEventListener('click', (ev)=>{
+cardsArray.forEach(card=>{
+  card.classList.add('show')
+})
+
+function clickEvent(){
+  cardsArray.forEach(card => card.addEventListener('click', (ev)=>{
     const targetEl = ev.target;
     buttons.forEach(button =>{
-        if(button.innerHTML == targetEl.innerHTML){
-        let filteredButton = button.classList.add(targetEl.innerHTML)
-        
-        } 
-    })
-}))
-
+      let filteredCard = button.parentElement.parentElement.parentElement
+      
+        if(button.innerHTML === targetEl.innerHTML){
+          filteredCard.classList.remove('show')
+          filteredCard.classList.add(targetEl.innerHTML) 
+        }
+      })
+      rejectedCards()
+  }))
 }
-clickHandler()
+
+clickEvent()
+
+function rejectedCards(){
+  cardsArray.forEach(card=>{
+    const found = cardsArray.map(card => card.className===('show'))
+    console.log(found)
+    if(card.classList.contains('show')){
+      card.classList.remove('show')
+      card.classList.add('hide')
+    } 
+  })
+ 
+}
