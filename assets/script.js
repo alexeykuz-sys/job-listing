@@ -183,46 +183,62 @@ const template = (card, element) => {
 }
 
 jobs.forEach(element=>{
-    const cards = document.getElementById('cards')
-    let card = document.createElement('card')
-    card.className = 'card'
-    cards.appendChild(card)
-    template(card,element)
+    const cards = document.getElementById('cards');
+    let card = document.createElement('card');
+    card.className = 'card';
+    cards.appendChild(card);
+    template(card,element);
 })
 
-filteredCardsArray = [];
-rejectedCardsArray = [];
+const filterRef= document.getElementById('filter');
+const clearRef = document.getElementById('clear');
 
-const card = document.querySelectorAll('.card')
-const buttons = Array.from(document.querySelectorAll('.button'))
-cardsArray = Array.from(card)
+function newElement(el) {
+  let divRef = document.createElement("div");
+  let divButton = document.createElement('div'); 
+  let divCross = document.createElement('img');
+  divCross.src = './images/icon-remove.svg';
+  divRef.className = "button-wrapper";
+  divButton.className = 'button-filter';
+  divCross.className = "cross";
+  divCross.id = 'cross';
+  divRef.appendChild(divButton);
+  divButton.innerHTML = el;
+  divRef.appendChild(divCross);
+  document.getElementById("rolesRef").appendChild(divRef);
+  
+}
+
+
+function filterHandler(element){
+  filterRef.style.display = element;
+}
+
+
+const card = document.querySelectorAll('.card');
+const buttons = Array.from(document.querySelectorAll('.button'));
+cardsArray = Array.from(card);
 
 cardsArray.forEach(card=>{
-  card.classList.add('show')
+  card.classList.add('show');
 })
 
 buttons.forEach(button =>button.addEventListener('click', (event)=>{
-  let filteredCard = button.parentElement.parentElement.parentElement
+  let filteredCard = button.parentElement.parentElement.parentElement;
   const targetEl = event.target;
-  filteredButtons = buttons.filter(button=>button.innerHTML===targetEl.innerHTML)
+  newElement(targetEl.innerHTML);
+  filterHandler('flex');
+  filteredButtons = buttons.filter(button=>button.innerHTML===targetEl.innerHTML);
   filteredButtons.forEach(filter=>{
-    let filteredCard = filter.parentElement.parentElement.parentElement
-    filteredCard.classList.add(targetEl.innerHTML)
-    filteredCard.classList.remove('show')
+    let filteredCard = filter.parentElement.parentElement.parentElement;
+    filteredCard.classList.add(targetEl.innerHTML);
+    filteredCard.classList.remove('show');
   })
   cardsArray.forEach(card=>{
-    clickedElement = card.classList.contains(targetEl.innerHTML)
-    console.log(clickedElement)
+    clickedElement = card.classList.contains(targetEl.innerHTML);
     if(card.classList.contains('show') || !clickedElement){
-      card.style.display = 'none'
+      card.style.display = 'none';
     }
   })
-//   rejectedcards = cardsArray.filter(card=>card.classList.contains('show') || !clickedElement)
-  
-//   rejectedcards.forEach(card=>{
-//     console.log(rejectedcards)
-//     card.style.display = 'none'
-//   })
-  
 }))
 
