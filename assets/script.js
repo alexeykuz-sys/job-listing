@@ -210,4 +210,19 @@ buttons.forEach(button =>button.addEventListener('click', (event)=>{
     filteredCard.classList.add(targetEl.innerHTML)
     filteredCard.classList.remove('show')
   })
-  }))
+  cardsArray.forEach(card=>{
+    clickedElement = card.classList.contains(targetEl.innerHTML)
+    console.log(clickedElement)
+    if(card.classList.contains('show') || !clickedElement){
+      card.style.display = 'none'
+    }
+  })
+//   rejectedcards = cardsArray.filter(card=>card.classList.contains('show') || !clickedElement)
+  
+//   rejectedcards.forEach(card=>{
+//     console.log(rejectedcards)
+//     card.style.display = 'none'
+//   })
+  
+}))
+
