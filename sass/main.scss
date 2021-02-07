@@ -75,7 +75,7 @@
     }
 }
 
- 
+
 .card{
     @include flexStart(column);
     background-color: white;
@@ -85,11 +85,15 @@
     margin-top: 50px;
     box-shadow: 2px 2px 13px 0px $desaturatedDarkCyan;
 
-    
+    &.hide {
+        display: none;
+    }
+
     &.new {
         border-left: 5px solid $desaturatedDarkCyan;
-
+        
     }
+    
     
     .card-top{
         margin-left: 13px;
@@ -98,7 +102,6 @@
     .logo{
         margin-top: -59px;
     }
-
 
     .brand-name{
         @include flexCenter(row);
@@ -112,13 +115,18 @@
         }
         .new {
             @include button1($desaturatedDarkCyan, $lightGrayishCyanBackground);
+            font-size: 10px;
         }
 
         .featured{
             @include button1($veryDarkGrayishCyan, $lightGrayishCyanBackground);
-            
+            font-size: 10px;    
+        }
+        .disableSpan{
+            display: none;
         }
     }
+
     .job-title{
         @include textSet($veryDarkGrayishCyan, $fontSize);
         letter-spacing: .3px;

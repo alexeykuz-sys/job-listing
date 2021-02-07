@@ -108,10 +108,6 @@ body {
   color: #2c3a3a;
 }
 
-.container.card.new.active {
-  display: flex;
-}
-
 .card {
   display: flex;
   align-items: flex-start;
@@ -122,6 +118,10 @@ body {
   flex-wrap: nowrap;
   margin-top: 50px;
   box-shadow: 2px 2px 13px 0px #5ba4a4;
+}
+
+.card.hide {
+  display: none;
 }
 
 .card.new {
@@ -158,6 +158,7 @@ body {
   margin-left: 15px;
   font-weight: 700;
   cursor: pointer;
+  font-size: 10px;
 }
 
 .card .brand-name .featured {
@@ -170,6 +171,11 @@ body {
   margin-left: 15px;
   font-weight: 700;
   cursor: pointer;
+  font-size: 10px;
+}
+
+.card .brand-name .disableSpan {
+  display: none;
 }
 
 .card .job-title {
