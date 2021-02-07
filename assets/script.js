@@ -223,9 +223,11 @@ cardsArray.forEach(card=>{
   card.classList.add('show');
 })
 
+
+
 buttons.forEach(button =>button.addEventListener('click', (event)=>{
-  let filteredCard = button.parentElement.parentElement.parentElement;
   const targetEl = event.target;
+  let filteredCard = button.parentElement.parentElement.parentElement;
   newElement(targetEl.innerHTML);
   filterHandler('flex');
   filteredButtons = buttons.filter(button=>button.innerHTML===targetEl.innerHTML);
@@ -234,11 +236,30 @@ buttons.forEach(button =>button.addEventListener('click', (event)=>{
     filteredCard.classList.add(targetEl.innerHTML);
     filteredCard.classList.remove('show');
   })
-  cardsArray.forEach(card=>{
-    clickedElement = card.classList.contains(targetEl.innerHTML);
-    if(card.classList.contains('show') || !clickedElement){
-      card.style.display = 'none';
-    }
-  })
+  cardHandler(targetEl)
+  
+  // cardsArray.forEach(card=>{
+  //   clickedElement = card.classList.contains(targetEl.innerHTML);
+  //   if(card.classList.contains('show') || !clickedElement){
+  //     card.style.display = 'none';
+  //   }
+  // })
 }))
 
+
+const cardHandler = (targetEl) => cardsArray.forEach(card=>{
+  clickedElement = card.classList.contains(targetEl.innerHTML);
+  if(card.classList.contains('show') || !clickedElement){
+    card.style.display = 'none';
+  }
+})
+
+
+
+clearRef.addEventListener('click', ()=>{
+  cardsArray.forEach(card=>{
+    card.classList.add('show')
+    card.style.display = 'flex'
+  filterHandler('none')
+})
+})
