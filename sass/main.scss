@@ -42,7 +42,7 @@
             @include flexCenter(row);
             margin-left: 2px;
             @include button2($lightGrayishCyanBackground, $desaturatedDarkCyan);
-            padding: 1px;
+            padding: 3px;
             font-size: $fontSize*0.9;
             margin: 5px;
             .cross{

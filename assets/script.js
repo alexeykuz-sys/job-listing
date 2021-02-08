@@ -152,6 +152,9 @@ const jobs = [
     }
   ]
   
+const filterRef= document.getElementById('filter');
+const clearRef = document.getElementById('clear');
+const crossRef = document.getElementById("filter").childNodes[1].childNodes[1];
 
 const template = (card, element) => {
     card.innerHTML = `
@@ -190,9 +193,6 @@ jobs.forEach(element=>{
     template(card,element);
 })
 
-const filterRef= document.getElementById('filter');
-const clearRef = document.getElementById('clear');
-
 function newElement(el) {
   let divRef = document.createElement("div");
   let divButton = document.createElement('div'); 
@@ -209,11 +209,9 @@ function newElement(el) {
   
 }
 
-
 function filterHandler(element){
   filterRef.style.display = element;
 }
-
 
 const card = document.querySelectorAll('.card');
 const buttons = Array.from(document.querySelectorAll('.button'));
@@ -227,7 +225,6 @@ cardsArray.forEach(card=>{
 
 buttons.forEach(button =>button.addEventListener('click', (event)=>{
   const targetEl = event.target;
-  let filteredCard = button.parentElement.parentElement.parentElement;
   newElement(targetEl.innerHTML);
   filterHandler('flex');
   filteredButtons = buttons.filter(button=>button.innerHTML===targetEl.innerHTML);
@@ -237,13 +234,7 @@ buttons.forEach(button =>button.addEventListener('click', (event)=>{
     filteredCard.classList.remove('show');
   })
   cardHandler(targetEl)
-  
-  // cardsArray.forEach(card=>{
-  //   clickedElement = card.classList.contains(targetEl.innerHTML);
-  //   if(card.classList.contains('show') || !clickedElement){
-  //     card.style.display = 'none';
-  //   }
-  // })
+  clearFilter(targetEl)
 }))
 
 
@@ -255,11 +246,26 @@ const cardHandler = (targetEl) => cardsArray.forEach(card=>{
 })
 
 
-
-clearRef.addEventListener('click', ()=>{
+const clearFilter = (targetEl) => clearRef.addEventListener('click', ()=>{
   cardsArray.forEach(card=>{
-    card.classList.add('show')
-    card.style.display = 'flex'
-  filterHandler('none')
+    card.classList.remove(targetEl.innerHTML)
+    card.style.display = 'flex';
+    let element = document.getElementById("rolesRef");
+    while (element.firstChild) {
+      element.removeChild(element.firstChild);
+    }
+  filterHandler('none');
+  })
 })
-})
+
+// addEventListener('click', ()=>{
+//   console.log(crossRef)
+//   cardsArray.forEach(card=>{
+//     card.classList.add('show');
+//     card.style.display = 'flex';
+//     let element = document.getElementById("rolesRef");
+//     while (element.firstChild) {
+//       element.removeChild(element.firstChild);
+//     }
+//   })
+// })
