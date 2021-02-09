@@ -209,6 +209,14 @@ function newElement(el) {
   
 }
 
+const elCount = () =>{
+  const x= document.getElementById("rolesRef").childElementCount;
+  return x
+  console.log(x)
+}
+console.log(x)
+
+
 function filterHandler(element){
   filterRef.style.display = element;
 }
@@ -227,6 +235,7 @@ buttons.forEach(button =>button.addEventListener('click', (event)=>{
   const targetEl = event.target;
   newElement(targetEl.innerHTML);
   filterHandler('flex');
+  elCount(targetEl)
   filteredButtons = buttons.filter(button=>button.innerHTML===targetEl.innerHTML);
   filteredButtons.forEach(filter=>{
     let filteredCard = filter.parentElement.parentElement.parentElement;
@@ -268,6 +277,7 @@ rolesRef.addEventListener('click', (e)=>{
   crossRole = cross.parentElement.firstChild.innerHTML;
   crossCard = cross.parentElement;
   console.log(crossRole)
+  
   if(cross.className = 'cross'){
     crossCard.remove();
   }
@@ -278,8 +288,8 @@ rolesRef.addEventListener('click', (e)=>{
       console.log(cardToCheck)
       card.classList.remove(crossRole);
       card.classList.add('show')
-    // card.style.display = 'flex';
-      
+      // card.style.display = 'flex';
+
     }
   })
 })
