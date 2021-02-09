@@ -154,7 +154,7 @@ const jobs = [
   
 const filterRef= document.getElementById('filter');
 const clearRef = document.getElementById('clear');
-const crossRef = document.getElementById("filter").childNodes[1].childNodes[1];
+const rolesRef = document.getElementById("rolesRef");
 
 const template = (card, element) => {
     card.innerHTML = `
@@ -245,27 +245,47 @@ const cardHandler = (targetEl) => cardsArray.forEach(card=>{
   }
 })
 
+function removeElement(x){
+  let element = document.getElementById(x);
+    while (element.firstChild) {
+      element.removeChild(element.firstChild);
+    }
+}
 
 const clearFilter = (targetEl) => clearRef.addEventListener('click', ()=>{
   cardsArray.forEach(card=>{
     card.classList.remove(targetEl.innerHTML)
-    card.style.display = 'flex';
-    let element = document.getElementById("rolesRef");
-    while (element.firstChild) {
-      element.removeChild(element.firstChild);
-    }
+    card.classList.add('show')
+    // card.style.display = 'flex';
+    card.style.removeProperty('display')
+    removeElement('rolesRef')
   filterHandler('none');
   })
 })
 
-// addEventListener('click', ()=>{
-//   console.log(crossRef)
-//   cardsArray.forEach(card=>{
-//     card.classList.add('show');
-//     card.style.display = 'flex';
-//     let element = document.getElementById("rolesRef");
-//     while (element.firstChild) {
-//       element.removeChild(element.firstChild);
-//     }
-//   })
-// })
+rolesRef.addEventListener('click', (e)=>{
+  let cross = e.target.parentNode.children[1];
+  crossRole = cross.parentElement.firstChild.innerHTML;
+  crossCard = cross.parentElement;
+  console.log(crossRole)
+  if(cross.className = 'cross'){
+    crossCard.remove();
+  }
+  cardsArray.forEach(card=>{
+    card.style.removeProperty('display')
+    cardToCheck = card.classList.contains(crossRole)
+    if (cardToCheck){
+      console.log(cardToCheck)
+      card.classList.remove(crossRole);
+      card.classList.add('show')
+    // card.style.display = 'flex';
+      
+    }
+  })
+})
+
+// crossCount = []
+// const crosscount = (e.target) => {
+//   crossCount = crossCount.push(cross)
+
+// }
