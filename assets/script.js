@@ -209,13 +209,6 @@ function newElement(el) {
   
 }
 
-const elCount = () =>{
-  const x= document.getElementById("rolesRef").childElementCount;
-  return x
-  console.log(x)
-}
-console.log(x)
-
 
 function filterHandler(element){
   filterRef.style.display = element;
@@ -235,15 +228,14 @@ buttons.forEach(button =>button.addEventListener('click', (event)=>{
   const targetEl = event.target;
   newElement(targetEl.innerHTML);
   filterHandler('flex');
-  elCount(targetEl)
   filteredButtons = buttons.filter(button=>button.innerHTML===targetEl.innerHTML);
   filteredButtons.forEach(filter=>{
     let filteredCard = filter.parentElement.parentElement.parentElement;
     filteredCard.classList.add(targetEl.innerHTML);
     filteredCard.classList.remove('show');
   })
-  cardHandler(targetEl)
-  clearFilter(targetEl)
+  cardHandler(targetEl);
+  clearFilter(targetEl);
 }))
 
 
@@ -263,11 +255,10 @@ function removeElement(x){
 
 const clearFilter = (targetEl) => clearRef.addEventListener('click', ()=>{
   cardsArray.forEach(card=>{
-    card.classList.remove(targetEl.innerHTML)
-    card.classList.add('show')
-    // card.style.display = 'flex';
-    card.style.removeProperty('display')
-    removeElement('rolesRef')
+    card.classList.remove(targetEl.innerHTML);
+    // card.classList.add('show');
+    card.style.removeProperty('display');
+    removeElement('rolesRef');
   filterHandler('none');
   })
 })
@@ -276,26 +267,24 @@ rolesRef.addEventListener('click', (e)=>{
   let cross = e.target.parentNode.children[1];
   crossRole = cross.parentElement.firstChild.innerHTML;
   crossCard = cross.parentElement;
-  console.log(crossRole)
-  
   if(cross.className = 'cross'){
     crossCard.remove();
   }
-  cardsArray.forEach(card=>{
-    card.style.removeProperty('display')
-    cardToCheck = card.classList.contains(crossRole)
-    if (cardToCheck){
-      console.log(cardToCheck)
-      card.classList.remove(crossRole);
-      card.classList.add('show')
-      // card.style.display = 'flex';
-
-    }
-  })
+  restoreElements();
 })
 
-// crossCount = []
-// const crosscount = (e.target) => {
-//   crossCount = crossCount.push(cross)
 
-// }
+function restoreElements (){
+  cardsArray.forEach(card=>{
+    card.classList.remove(crossRole);
+    card.style.removeProperty('display');
+    cardToCheck = card.classList.contains(crossRole);
+    const elCount= document.getElementById("rolesRef").childElementCount;
+    if (cardToCheck){
+      card.classList.remove(crossRole);
+      card.classList.add('hide');
+    } else if (elCount <1){
+      filterHandler('none');
+    }
+  })
+}
