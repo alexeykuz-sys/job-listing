@@ -266,6 +266,7 @@ const clearFilter = (targetEl) => clearRef.addEventListener('click', ()=>{
 rolesRef.addEventListener('click', (e)=>{
   let cross = e.target.parentNode.children[1];
   crossRole = cross.parentElement.firstChild.innerHTML;
+  console.log(crossRole)
   crossCard = cross.parentElement;
   if(cross.className = 'cross'){
     crossCard.remove();
@@ -277,14 +278,16 @@ rolesRef.addEventListener('click', (e)=>{
 function restoreElements (){
   cardsArray.forEach(card=>{
     card.classList.remove(crossRole);
-    card.style.removeProperty('display');
     cardToCheck = card.classList.contains(crossRole);
     const elCount= document.getElementById("rolesRef").childElementCount;
-    if (cardToCheck){
+    console.log(crossRole)
+    if (crossRole){
       card.classList.remove(crossRole);
-      card.classList.add('hide');
-    } else if (elCount <1){
-      filterHandler('none');
-    }
+      // card.classList.add('show');
+      card.style.removeProperty('display');
+      } 
+      
+    //   filterHandler('none');
+    
   })
 }
