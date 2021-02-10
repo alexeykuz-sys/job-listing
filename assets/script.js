@@ -156,6 +156,8 @@ const filterRef= document.getElementById('filter');
 const clearRef = document.getElementById('clear');
 const rolesRef = document.getElementById("rolesRef");
 
+// creates cards/jobs templates
+
 const template = (card, element) => {
     card.innerHTML = `
         <div class="card-top">        
@@ -185,6 +187,8 @@ const template = (card, element) => {
     `
 }
 
+
+
 jobs.forEach(element=>{
     const cards = document.getElementById('cards');
     let card = document.createElement('card');
@@ -192,6 +196,9 @@ jobs.forEach(element=>{
     cards.appendChild(card);
     template(card,element);
 })
+
+
+// creates roles buttons in filter card
 
 function newElement(el) {
   let divRef = document.createElement("div");
@@ -209,28 +216,30 @@ function newElement(el) {
   
 }
 
-
+// function shows or hides filter card
 function filterHandler(element){
   filterRef.style.display = element;
 }
 
+
+//  adds Show class to all cards
 const card = document.querySelectorAll('.card');
-const buttons = Array.from(document.querySelectorAll('.button'));
 cardsArray = Array.from(card);
 
 cardsArray.forEach(card=>{
   card.classList.add('show');
 })
 
+// checks all buttons and filter cards depending on event target
 
-
+const buttons = Array.from(document.querySelectorAll('.button'));
 buttons.forEach(button =>button.addEventListener('click', (event)=>{
   const targetEl = event.target;
   newElement(targetEl.innerHTML);
   filterHandler('flex');
   filteredButtons = buttons.filter(button=>button.innerHTML===targetEl.innerHTML);
   filteredButtons.forEach(filter=>{
-    let filteredCard = filter.parentElement.parentElement.parentElement;
+    const filteredCard = filter.parentElement.parentElement.parentElement;
     filteredCard.classList.add(targetEl.innerHTML);
     filteredCard.classList.remove('show');
   })
@@ -238,6 +247,7 @@ buttons.forEach(button =>button.addEventListener('click', (event)=>{
   clearFilter(targetEl);
 }))
 
+// checked if element clicked and if not hides the card
 
 const cardHandler = (targetEl) => cardsArray.forEach(card=>{
   clickedElement = card.classList.contains(targetEl.innerHTML);
@@ -246,12 +256,16 @@ const cardHandler = (targetEl) => cardsArray.forEach(card=>{
   }
 })
 
+// removes element from the filter card
+
 function removeElement(x){
   let element = document.getElementById(x);
     while (element.firstChild) {
       element.removeChild(element.firstChild);
     }
 }
+
+// clears all filtered roles, hides filter card and restores all job cards
 
 const clearFilter = (targetEl) => clearRef.addEventListener('click', ()=>{
   cardsArray.forEach(card=>{
@@ -263,31 +277,50 @@ const clearFilter = (targetEl) => clearRef.addEventListener('click', ()=>{
   })
 })
 
+//removes roles from filter and restores cards
+
 rolesRef.addEventListener('click', (e)=>{
   let cross = e.target.parentNode.children[1];
-  crossRole = cross.parentElement.firstChild.innerHTML;
-  console.log(crossRole)
+  crossRoleRef = cross.parentElement.firstChild.innerHTML;
+  console.log(crossRoleRef)
   crossCard = cross.parentElement;
-  if(cross.className = 'cross'){
-    crossCard.remove();
-  }
-  restoreElements();
+    if(cross.className = 'cross'){
+      crossCard.remove();
+    }
+  restoreCardElements();
 })
 
 
-function restoreElements (){
-  cardsArray.forEach(card=>{
-    card.classList.remove(crossRole);
-    cardToCheck = card.classList.contains(crossRole);
-    const elCount= document.getElementById("rolesRef").childElementCount;
-    console.log(crossRole)
-    if (crossRole){
-      card.classList.remove(crossRole);
-      // card.classList.add('show');
-      card.style.removeProperty('display');
-      } 
+function restoreCardElements (){
+  buttons.forEach(button=>{
+    x = buttons.filter(button=>button.innerHTML===crossRoleRef);
+    x.forEach(x=>{
+      cardToRestore = x.parentElement.parentElement.parentElement;
+      console.log(cardToRestore)
+      cardToRestore.classList.remove(crossRoleRef);
+    })
+  })
+  cardRestoreHandler()
+}
+
+
+const cardRestoreHandler = () => cardsArray.forEach(card=>{
+  restrtoreElem = card.classList.contains(crossRoleRef);
+  if(!restrtoreElem){
+    card.style.removeProperty('display');
+  }
+})
+  // cardsArray.forEach(card=>{
+  //  if(crossRoleRef ==)
+  //   card.classList.remove(crossRoleRef);
+  //   cardToCheck = card.classList.contains(crossRoleRef);
+  //   const elCount= document.getElementById("rolesRef").childElementCount; 
+    // if (crossRoleRef){
+    //   card.classList.remove(crossRoleRef);
+    //   // card.classList.add('show');
+    //   card.style.removeProperty('display');
+    //   } 
       
     //   filterHandler('none');
     
-  })
-}
+  // })
