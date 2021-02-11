@@ -247,6 +247,7 @@ buttons.forEach(button =>button.addEventListener('click', (event)=>{
   clearFilter(targetEl);
 }))
 
+
 // checked if element clicked and if not hides the card
 
 const cardHandler = (targetEl) => cardsArray.forEach(card=>{
@@ -295,32 +296,12 @@ function restoreCardElements (){
   buttons.forEach(button=>{
     x = buttons.filter(button=>button.innerHTML===crossRoleRef);
     x.forEach(x=>{
-      cardToRestore = x.parentElement.parentElement.parentElement;
-      console.log(cardToRestore)
-      cardToRestore.classList.remove(crossRoleRef);
+      if(x){
+        cardToRestore = x.parentElement.parentElement.parentElement;
+        console.log(cardToRestore)
+        cardToRestore.classList.remove(crossRoleRef);
+      }
     })
   })
-  cardRestoreHandler()
 }
 
-
-const cardRestoreHandler = () => cardsArray.forEach(card=>{
-  restrtoreElem = card.classList.contains(crossRoleRef);
-  if(!restrtoreElem){
-    card.style.removeProperty('display');
-  }
-})
-  // cardsArray.forEach(card=>{
-  //  if(crossRoleRef ==)
-  //   card.classList.remove(crossRoleRef);
-  //   cardToCheck = card.classList.contains(crossRoleRef);
-  //   const elCount= document.getElementById("rolesRef").childElementCount; 
-    // if (crossRoleRef){
-    //   card.classList.remove(crossRoleRef);
-    //   // card.classList.add('show');
-    //   card.style.removeProperty('display');
-    //   } 
-      
-    //   filterHandler('none');
-    
-  // })
