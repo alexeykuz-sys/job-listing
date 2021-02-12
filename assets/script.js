@@ -226,10 +226,11 @@ function filterHandler(element){
 const card = document.querySelectorAll('.card');
 cardsArray = Array.from(card);
 
-cardsArray.forEach(card=>{
-  card.classList.add('show');
-})
+// cardsArray.forEach(card=>{
+//   card.classList.add('show');
+// })
 
+chosenCards=[]
 // checks all buttons and filter cards depending on event target
 let filteredButtons = []
 const buttons = Array.from(document.querySelectorAll('.button'));
@@ -240,8 +241,11 @@ buttons.forEach(button =>button.addEventListener('click', (event)=>{
   filteredButtons = buttons.filter(button=>button.innerHTML===targetEl.innerHTML);
   filteredButtons.forEach(filter=>{
     filteredCard = filter.parentElement.parentElement.parentElement;
+    // console.log(filteredCard)
+    chosenCards.push(filteredCard)
+    // console.log(chosenCards)
     filteredCard.classList.add(targetEl.innerHTML);
-    filteredCard.classList.remove('show');
+    // filteredCard.classList.remove('show');
   })
   cardHandler(targetEl);
   clearFilter(targetEl);
@@ -250,10 +254,13 @@ buttons.forEach(button =>button.addEventListener('click', (event)=>{
 
 // checked if element clicked and if not hides the card
 
-const cardHandler = (targetEl) => cardsArray.forEach(card=>{
-  clickedElement = card.classList.contains(targetEl.innerHTML);
-  if(card.classList.contains('show') || !clickedElement){
+const cardHandler = (element) => cardsArray.forEach(card=>{
+  clickedElement = card.classList.contains(element.innerHTML);
+  console.log(clickedElement)
+  if(!clickedElement){
     card.style.display = 'none';
+  } else if(clickedElement && chosenCards){
+    card.style.removeProperty('display')
   }
 })
 
@@ -292,16 +299,20 @@ rolesRef.addEventListener('click', (e)=>{
   
 })
 
-
 function removeCardFilters(){
-  // console.log(filter)
-  filteredButtons.forEach(filter=>{
-    filteredCard = filter.parentElement.parentElement.parentElement;
-    console.log(filteredCard)
-    if(filteredCard.classList.contains(crossRoleRef)){
-      filteredCard.classList.remove(crossRoleRef);
-      filteredCard.classList.add('show')
-    }
+  console.log(!chosenCards)
+  
+
+  chosenCards.forEach(card=>{
+    // filteredCard = filter.parentElement.parentElement.parentElement;
+    console.log(card)
+    const z = card.classList.contains(crossRoleRef)
+    if(z || !chosenCards){
+      card.classList.remove(crossRoleRef);
+      // filteredCard.classList.add('show')
+      card.style.removeProperty('display')
+    } 
+    
     // filteredCard.classList.remove(crossRoleRef);
     // cardsArray.forEach(card=>{
     //   if(card.classList.contains('show')){
