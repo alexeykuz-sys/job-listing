@@ -231,7 +231,7 @@ cardsArray.forEach(card=>{
 })
 
 // checks all buttons and filter cards depending on event target
-
+let filteredButtons = []
 const buttons = Array.from(document.querySelectorAll('.button'));
 buttons.forEach(button =>button.addEventListener('click', (event)=>{
   const targetEl = event.target;
@@ -239,7 +239,7 @@ buttons.forEach(button =>button.addEventListener('click', (event)=>{
   filterHandler('flex');
   filteredButtons = buttons.filter(button=>button.innerHTML===targetEl.innerHTML);
   filteredButtons.forEach(filter=>{
-    const filteredCard = filter.parentElement.parentElement.parentElement;
+    filteredCard = filter.parentElement.parentElement.parentElement;
     filteredCard.classList.add(targetEl.innerHTML);
     filteredCard.classList.remove('show');
   })
@@ -288,20 +288,28 @@ rolesRef.addEventListener('click', (e)=>{
     if(cross.className = 'cross'){
       crossCard.remove();
     }
-  restoreCardElements();
+  removeCardFilters();
+  
 })
 
 
-function restoreCardElements (){
-  buttons.forEach(button=>{
-    x = buttons.filter(button=>button.innerHTML===crossRoleRef);
-    x.forEach(x=>{
-      if(x){
-        cardToRestore = x.parentElement.parentElement.parentElement;
-        console.log(cardToRestore)
-        cardToRestore.classList.remove(crossRoleRef);
-      }
-    })
+function removeCardFilters(){
+  // console.log(filter)
+  filteredButtons.forEach(filter=>{
+    filteredCard = filter.parentElement.parentElement.parentElement;
+    console.log(filteredCard)
+    if(filteredCard.classList.contains(crossRoleRef)){
+      filteredCard.classList.remove(crossRoleRef);
+      filteredCard.classList.add('show')
+    }
+    // filteredCard.classList.remove(crossRoleRef);
+    // cardsArray.forEach(card=>{
+    //   if(card.classList.contains('show')){
+    //     card.style.removeProperty('display')
+    //   }
+    // })
+    // console.log(cardsArray  )
+    // filteredCard.classList.remove('show');
   })
 }
 
