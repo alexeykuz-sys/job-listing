@@ -241,10 +241,8 @@ buttons.forEach(button =>button.addEventListener('click', (event)=>{
   filteredButtons = buttons.filter(button=>button.innerHTML===targetEl.innerHTML);
   filteredButtons.forEach(filter=>{
     filteredCard = filter.parentElement.parentElement.parentElement;
-    // console.log(filteredCard)
-    chosenCards.push(filteredCard)
-    // console.log(chosenCards)
     filteredCard.classList.add(targetEl.innerHTML);
+    console.log(filteredCard)
     // filteredCard.classList.remove('show');
   })
   cardHandler(targetEl);
@@ -300,16 +298,18 @@ function removeCardFilters(){
   
   cardsArray.forEach(card=>{
   let v = rolesRef.childElementCount
-  // console.log(card.classList.length)
-    console.log(v, card)
-  if(chosenCards){
-      console.log(chosenCards, v)
+  console.log(filteredCard)
+  if(card.className !==crossRoleRef && v ===0){
+    card.style.removeProperty('display');
+    filterHandler('none');
+  } else if(filteredCard){
       card.classList.remove(crossRoleRef);
+      
       card.style.removeProperty('display')
-    } 
-    if (v === 0){
-      filterHandler('none');
-    } 
+    }
+    // if (v === 0){
+    //   filterHandler('none');
+    // } 
       //  card.style.removeProperty('display');
     
     // filteredCard.classList.remove(crossRoleRef);
