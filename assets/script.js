@@ -226,13 +226,10 @@ function filterHandler(element){
 const card = document.querySelectorAll('.card');
 cardsArray = Array.from(card);
 
-// cardsArray.forEach(card=>{
-//   card.classList.add('show');
-// })
 
-filterArray=[]
+filterArray=[];
 // checks all buttons and filter cards depending on event target
-let filteredButtons = []
+let filteredButtons = [];
 const buttons = Array.from(document.querySelectorAll('.button'));
 buttons.forEach(button =>button.addEventListener('click', (event)=>{
   const targetEl = event.target;
@@ -242,14 +239,11 @@ buttons.forEach(button =>button.addEventListener('click', (event)=>{
   filteredButtons.forEach(filter=>{
     filteredCard = filter.parentElement.parentElement.parentElement;
     filteredCard.classList.add(targetEl.innerHTML);
-    // console.log(filteredCard)
-    // filteredCard.classList.remove('show');
-    filterArray.push(targetEl.innerHTML)
-    
-  })
+    filterArray.push(targetEl.innerHTML);
+  });
   cardHandler(targetEl);
   clearFilter(targetEl);
-}))
+}));
 
 
 // checked if element clicked and if not hides the card
@@ -261,7 +255,7 @@ const cardHandler = (element) => cardsArray.forEach(card=>{
   if(!clickedElement){
     card.style.display = 'none';
   }
-})
+});
 
 // removes element from the filter card
 
@@ -277,12 +271,12 @@ function removeElement(x){
 const clearFilter = (targetEl) => clearRef.addEventListener('click', ()=>{
   cardsArray.forEach(card=>{
     card.classList.remove(targetEl.innerHTML);
-    // card.classList.add('show');
+    
     card.style.removeProperty('display');
     removeElement('rolesRef');
   filterHandler('none');
-  })
-})
+  });
+});
 
 //removes roles from filter and restores cards
 
@@ -294,44 +288,37 @@ rolesRef.addEventListener('click', (e)=>{
       crossCard.remove();
     }
   removeCardFilters();
-  
+
 })
 
+function removeItemAll(arr, value) {
+  var i = 0;
+  while (i < arr.length) {
+    if (arr[i] === value) {
+      arr.splice(i, 1);
+    } else {
+      ++i;
+    }
+  }
+  return arr;
+}
+
 function removeCardFilters(){
-  console.log(filterArray) 
-
-  filterArray.forEach(elm=>{
-    
-    cardToRemove= cardsArray.filter(card=>card.classList.contains(elm))
-    // card.classList.remove(elm)
-    console.log(cardToRemove)
-    cardToRemove
-    
-  })
-  console.log(filterArray)
+  let x = removeItemAll(filterArray, crossRoleRef);
+ 
+  
   cardsArray.forEach(card=>{
-  // let v = rolesRef.childElementCount
-  // // console.log(crossRoleRef)
-  // if(card.className ===crossRoleRef){
-  //   // card.style.removeProperty('display');
-  //   card.classList.remove(crossRoleRef);
-  // } 
-  //   if (v === 0){
-  //     filterHandler('none');
-  //     card.style.removeProperty('display');
-  //     card.classList.remove(crossRoleRef);
-
-  //   } 
-  //     //  card.style.removeProperty('display');
-    
-    // filteredCard.classList.remove(crossRoleRef);
-    // cardsArray.forEach(card=>{
-    //   if(card.classList.contains('show')){
-    //     card.style.removeProperty('display')
-    //   }
-    // })
-    // console.log(cardsArray  )
-    // filteredCard.classList.remove('show');
+    const found = filterArray.every(r => card.classList.contains(r))
+    if (found) {
+      card.classList.remove(crossRoleRef);
+      card.style.removeProperty('display');
+    } else {
+      return
+    }
+    if (filterArray.length === 0) {
+      filterHandler('none');
+    }
+  
   })
 }
 
