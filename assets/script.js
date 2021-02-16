@@ -230,7 +230,7 @@ cardsArray = Array.from(card);
 //   card.classList.add('show');
 // })
 
-chosenCards=[]
+filterArray=[]
 // checks all buttons and filter cards depending on event target
 let filteredButtons = []
 const buttons = Array.from(document.querySelectorAll('.button'));
@@ -242,8 +242,10 @@ buttons.forEach(button =>button.addEventListener('click', (event)=>{
   filteredButtons.forEach(filter=>{
     filteredCard = filter.parentElement.parentElement.parentElement;
     filteredCard.classList.add(targetEl.innerHTML);
-    console.log(filteredCard)
+    // console.log(filteredCard)
     // filteredCard.classList.remove('show');
+    filterArray.push(targetEl.innerHTML)
+    
   })
   cardHandler(targetEl);
   clearFilter(targetEl);
@@ -254,6 +256,7 @@ buttons.forEach(button =>button.addEventListener('click', (event)=>{
 
 const cardHandler = (element) => cardsArray.forEach(card=>{
   clickedElement = card.classList.contains(element.innerHTML);
+  
   // console.log(clickedElement)
   if(!clickedElement){
     card.style.display = 'none';
@@ -295,22 +298,31 @@ rolesRef.addEventListener('click', (e)=>{
 })
 
 function removeCardFilters(){
-  
+  console.log(filterArray) 
+
+  filterArray.forEach(elm=>{
+    
+    cardToRemove= cardsArray.filter(card=>card.classList.contains(elm))
+    // card.classList.remove(elm)
+    console.log(cardToRemove)
+    cardToRemove
+    
+  })
+  console.log(filterArray)
   cardsArray.forEach(card=>{
-  let v = rolesRef.childElementCount
-  console.log(filteredCard)
-  if(card.className !==crossRoleRef && v ===0){
-    card.style.removeProperty('display');
-    filterHandler('none');
-  } else if(filteredCard){
-      card.classList.remove(crossRoleRef);
-      
-      card.style.removeProperty('display')
-    }
-    // if (v === 0){
-    //   filterHandler('none');
-    // } 
-      //  card.style.removeProperty('display');
+  // let v = rolesRef.childElementCount
+  // // console.log(crossRoleRef)
+  // if(card.className ===crossRoleRef){
+  //   // card.style.removeProperty('display');
+  //   card.classList.remove(crossRoleRef);
+  // } 
+  //   if (v === 0){
+  //     filterHandler('none');
+  //     card.style.removeProperty('display');
+  //     card.classList.remove(crossRoleRef);
+
+  //   } 
+  //     //  card.style.removeProperty('display');
     
     // filteredCard.classList.remove(crossRoleRef);
     // cardsArray.forEach(card=>{
