@@ -11,10 +11,8 @@ html {
 }
 
 body {
-  overflow-x: hidden;
   font-family: "Spartan", Helvetica, sans-serif;
   min-height: 100vh;
-  min-width: 100vw;
   font-size: 15px;
   background-color: #effafa;
 }
